@@ -12,6 +12,17 @@
                 <v-row>
                     <v-col cols="12" sm="9" md="9" class="pa-0">
                         <v-card flat class="pl-12 rounded-0 pt-4">
+                            <!-- <Space>
+                                <DatePicker placeholder="time" />
+                                <Poptip confirm title="time">
+                                </Poptip>
+                            </Space>
+                            <Space>
+                                <DatePicker placeholder="time" />
+                                <Poptip confirm title="time">
+                                    <Button :loading="loading" @click="loading=!loading"><span v-if="!loading">Search</span></Button>
+                                </Poptip>
+                            </Space> -->
                             <v-card-text>
                                 <h1>
                                     Advancing the power of facts
@@ -156,9 +167,11 @@
             <br>
             <br>
             <v-container>
+                <v-card-text>
+
                     <v-row class="my-0 py-0">
-                        <v-col v-for="(item, index) in item" :key="index" cols="12" sm="6" md="4" class="py-0" >
-                            <v-card flat style="background-color: rgb(255, 255, 255);" max-height="400px" max-width="100%" >
+                        <v-col v-for="(item, index) in item" :key="index" cols="12" sm="6" md="4" class="py-0">
+                            <v-card flat style="background-color: rgb(255, 255, 255);" max-height="400px" max-width="100%">
                                 <v-img max-height="200" max-width="100%" :src="item.image" />
                                 <v-card-text>
                                     {{ item.text }}
@@ -166,6 +179,44 @@
                             </v-card>
                         </v-col>
                     </v-row>
+                </v-card-text>
+            </v-container>
+            <br>
+        </div>
+        <div>
+            <v-container>
+                <div>
+                    <v-card-title>
+                        <h2>Product</h2>
+                    </v-card-title>
+                </div>
+                <v-card-text v-for="(item, index) in item" :key="index" class="text-center py-0">
+                    <v-row>
+                        <v-col v-if="index % 2 === 0" cols="12" sm="6" md="6" class="text_style py-0">
+                            <v-card-text>
+                                {{ item.text }}
+                            </v-card-text>
+                        </v-col>
+                        <v-col class="d-flex child-flex " cols="12" sm="6" md="6">
+                            <v-card-text class="pa-0 text_style">
+                                <v-img max-height="350px" max-width="600px" :src="`${item.image}?image=${index * 5 + 10}`"
+                                    :lazy-src="`https://picsum.photos/10/6?image=${index * 5 + 10}`" aspect-ratio="1"
+                                    class="grey lighten-2">
+                                    <template v-slot:placeholder>
+                                        <v-row class="fill-height ma-0" align="center" justify="center">
+                                            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                        </v-row>
+                                    </template>
+                                </v-img>
+                            </v-card-text>
+                        </v-col>
+                        <v-col v-if="index % 2 !== 0" cols="12" sm="6" md="6" class="text_style">
+                            <v-card-text>
+                                {{ item.text }}
+                            </v-card-text>
+                        </v-col>
+                    </v-row>
+                </v-card-text>
             </v-container>
         </div>
     </div>
@@ -174,6 +225,7 @@
 export default {
     data() {
         return {
+            loading:false,
             hover: false,
             item: [{
                 image: 'https://miro.medium.com/max/2400/0*hDAyhnOx767w5qma.jpg',

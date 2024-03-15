@@ -1,112 +1,154 @@
 <template>
-  <v-app dark>
-    <v-app-bar :clipped-left="clipped" fixed app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="clipped = !clipped">
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="fixed = !fixed">
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title>{{ title }}</v-toolbar-title>
-      <v-spacer />
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
-    </v-app-bar>
-    <v-main>
-      <Nuxt />
-    </v-main>
-    <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light> mdi-repeat </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer dark padless>
-      <v-card flat tile class="red lighten-1 text-center" width="100%">
-        <v-card-text>
-          <v-btn :style="{ backgroundColor: item.backgroundColor }" v-for="item in icons" :key="item.icon"
-            class="mx-4 white--text" icon @click="openLinkInNewTab(item.link)">
-            <v-icon :color="item.color" size="30px">{{ item.icon }}</v-icon>
-          </v-btn>
-        </v-card-text>
-
-        <v-card-text class="white--text pt-0">
-          Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut
-          risus eget metus luctus accumsan id ultrices nunc.
-        </v-card-text>
-        <v-divider></v-divider>
-        <v-card-text class="white--text text-h7">
-          <strong><span class="text-h6">Ipay App</span></strong>
-        </v-card-text>
+  <v-app>
+    <div class="fill-height">
+      <v-card absolute color="#ff0000" elevate-on-scroll scroll-target="#scrolling-techniques-7" class="rounded-0"
+        style="height: 75px; padding: 0%;">
+        <v-row>
+          <v-col cols="5" class="color_with pa-0" style="height:75px; border-top-right-radius: 100%;">
+            <v-card-text class="pa-0">
+              <v-btn text style="height: 75px; width: 100%; border-top-right-radius: 100%; color:transparent; padding-right: 30%;" @click="$router.push('/')">
+                <v-img max-height="75px" max-width="75px"
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_of_YouTube_%282015-2017%29.svg/2560px-Logo_of_YouTube_%282015-2017%29.svg.png" />
+              </v-btn>
+            </v-card-text>
+          </v-col>
+          <v-col cols="7" style="width: 55%; height:100%;">
+            <v-card-text class="pa-0 pt-1">
+              <Menu mode="horizontal" :theme="theme" active-name="1" @on-select="menuSelect" class="colo_red color"
+                style="display: flex; justify-content: right;">
+                <MenuItem name="../data" style="color: #fff;">
+                <Icon class="color_w" type="ios-paper" />
+                Data
+                </MenuItem>
+                <MenuItem name="../about" style="color: #fff;">
+                <Icon type="ios-people" />
+                About
+                </MenuItem>
+                <Submenu name="3" style="color: #fff;">
+                  <template #title>
+                    <Icon type="ios-stats" />
+                    Menu
+                  </template>
+                  <MenuGroup title="Menu">
+                    <MenuItem name="../post">Menu</MenuItem>
+                    <MenuItem name="">Menu</MenuItem>
+                    <MenuItem name="3-3">Menu</MenuItem>
+                  </MenuGroup>
+                  <MenuGroup title="Menu">
+                    <MenuItem name="3-4">Menu</MenuItem>
+                    <MenuItem name="3-5">Menu</MenuItem>
+                  </MenuGroup>
+                </Submenu>
+                <MenuItem name="../menu" style="color: #fff;">
+                <Icon type="ios-construct" />
+                Menu
+                </MenuItem>
+              </Menu>
+            </v-card-text>
+          </v-col>
+        </v-row>
       </v-card>
-    </v-footer>
+      <v-sheet id="scrolling-techniques-7" class="overflow-y-auto">
+        <v-main>
+          <Nuxt />
+        </v-main>
+        <v-footer style="background-color: #ff0000;">
+          <v-card flat tile class="color_w text-center" style="background-color: #ff0000;">
+            <v-card-text style="background-color: #ff0000;">
+              <v-btn v-for="(icon, index) in icons" :key="index" class="mx-4 white--text" icon
+                @click="openLinkInNewTab(link[index])">
+                <v-icon size="24px">
+                  {{ icon }}
+                </v-icon>
+              </v-btn>
+            </v-card-text>
+            <v-card-text class="white--text px-0 pt-0" style="background-color: #ff0000;">
+              Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum.
+              Praesent
+              ut
+              risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet
+              dui.
+              Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum
+              ultrices,
+              cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius
+              natoque
+              penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+            </v-card-text>
+            <v-divider style="background-color: #fff;"></v-divider>
+            <v-card-text class="white--text">
+              <strong>ITcapital</strong>
+            </v-card-text>
+          </v-card>
+        </v-footer>
+      </v-sheet>
+    </div>
   </v-app>
 </template>
 
 <script>
 export default {
-  name: 'DefaultLayout',
   data() {
     return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/',
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire',
-        },
-      ],
+      theme: 'light',
       icons: [
-        {
-          icon: 'mdi-facebook',
-          backgroundColor: 'blue',
-          title: 'Welcome',
-          link: '',
-          color: '#fff',
-        },
-        {
-          icon: 'mdi-whatsapp',
-          backgroundColor: '#00cc00',
-          title: 'Welcome',
-          link: '',
-          color: '#fff',
-        },
-        {
-          icon: 'mdi-youtube',
-          backgroundColor: '#fff',
-          title: 'Welcome',
-          link: '',
-          color: '#e60000',
-        },
-        {
-          icon: 'mdi-instagram',
-          backgroundColor: '#ff33cc',
-          color: '#fff',
-          title: 'Welcome',
-          link: '',
-        },
+        'mdi-facebook',
+        'mdi-whatsapp',
+        'mdi-instagram',
       ],
-      miniVariant: true,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js',
+      link: [
+        '', // facebook
+        '', // 
+        '',
+        'https://tplus.la/help',
+      ],
     }
   },
+  mounted() {
+    this.setSheetHeight();
+    window.addEventListener('resize', this.setSheetHeight);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.setSheetHeight);
+  },
+  methods: {
+    setSheetHeight() {
+      const sheet = document.getElementById('scrolling-techniques-7');
+      if (sheet) {
+        const screenHeight = window.innerHeight - 65;
+        sheet.style.maxHeight = screenHeight + 'px';
+      }
+    },
+    menuSelect(name) {
+      // console.log('Selected menu item:', name);
+      this.$router.push(name); // Navigate to the "user" page
+    },
+    openLinkInNewTab(link) {
+      window.open(link, '_blank')
+    },
+  }
 }
 </script>
+
+<style>
+/* Hide scrollbar */
+#scrolling-techniques-7::-webkit-scrollbar {
+  display: none;
+}
+
+/* Fill height utility class */
+.fill-height {
+  height: 100%;
+}
+
+.colo_red {
+  background-color: #ff0000;
+}
+
+.color_with {
+  background-color: #fff;
+}
+
+.color_w {
+  color: #fff;
+}
+</style>

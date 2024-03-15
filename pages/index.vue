@@ -121,7 +121,7 @@
         </v-row>
       </v-card-text>
     </v-container>
-    <v-img style="100%" gradient="to top right, rgba(0,0,0,0.8), rgba(0,0,0,0.8)"
+    <v-img gradient="to top right, rgba(0,0,0,0.8), rgba(0,0,0,0.8)"
       src="https://sgp1.digitaloceanspaces.com/adaybulletin/2017/12/1200-x-400.jpg">
       <v-container style="height: 100%" class="py-center">
         <v-row justify="center" align="center" class="ma-0" style="height: 100%">
