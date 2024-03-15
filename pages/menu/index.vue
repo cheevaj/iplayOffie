@@ -1,5 +1,5 @@
 <template>
-    <div class="demo-split">
+    <div>
         <v-card outlined class="rounded-0 screen"
             style="width: 100%; position: fixed; height: 100vh; left: 0; overflow: auto; z-index: 100;">
             <!-- <v-card-actions class="pa-0" style="width: 100%; height: 10%;">
@@ -11,28 +11,39 @@
                 </v-card-text>
             </v-card-actions>
             <v-divider /> -->
-            <v-card-actions class="pa-0" style="width: 100%; height: 100%;">
-                <v-card-text class="pa-0" style="width: 20%; height: 100%;">
-                    <div class="layout"
-                        style="width: 100%; height: 93%; overflow-y: auto; border-bottom-left-radius: 0; border-bottom-right-radius: 0;">
-                        <Menu :theme="theme" :active-name="activeMenuItem" style="width: 100%; height: 100%;">
-                            <MenuGroup title="Menu Group">
-                                <MenuItem v-for="item in menuItems" :key="item.name" :name="item.name"
-                                    @on-click="handleMenuItemClick(item)">
-                                <Icon :type="item.iconType" />
-                                {{ item.label }}
-                                </MenuItem>
-                            </MenuGroup>
-                        </Menu>
-                    </div>
-                    <v-card outlined class="text-center pb-0 rounded-0" style="width: 100%; height: 7%;">
-                        <h4 style="width: 100%;">Title</h4>
-                    </v-card>
-                </v-card-text>
-                <v-card-text class="py-0" style="width: 80%; height: 100%; overflow-y: auto; ">
-                    <service v-if="activeMenuItem === '1'" />
-                </v-card-text>
-            </v-card-actions>
+            <div class="demo-split" style="width: 100%; height: 100%;">
+                <Split v-model="split">
+                    <template #left>
+                        <v-card-text class="pa-0" style="width: 100%; height: 100%;">
+                            <div class="layout"
+                                style="width: 100%; height: 100%; overflow-y: auto; border-bottom-left-radius: 0; border-bottom-right-radius: 0;">
+                                <Menu :theme="theme" :active-name="activeMenuItem" style="width: 100%; height: 100%;">
+                                    <MenuGroup title="Menu Group">
+                                        <MenuItem v-for="item in menuItems" :key="item.name" :name="item.name"
+                                            @on-click="handleMenuItemClick(item)">
+                                        <Icon :type="item.iconType" />
+                                        {{ item.label }}
+                                        </MenuItem>
+                                    </MenuGroup>
+                                </Menu>
+                            </div>
+                            <!-- <v-card outlined class="text-center pb-0 rounded-0"
+                                style="width: 100%; height: 7%; bottom: 0px; ">
+                                <h4 style="width: 100%;">Title</h4>
+                            </v-card> -->
+                        </v-card-text>
+                    </template>
+                    <template #right>
+                        <v-card-text class="py-0" style="width: 100%; height: 100%; overflow-y: auto; ">
+                            <service v-if="activeMenuItem === '1'" />
+                        </v-card-text>
+                    </template>
+                </Split>
+            </div>
+            <!-- <v-card-actions class="pa-0" style="width: 100%; height: 100%;">
+
+                
+            </v-card-actions> -->
         </v-card>
     </div>
 </template>
@@ -47,6 +58,7 @@ export default {
     },
     data() {
         return {
+            split: 0.2,
             theme: 'light', // Assuming you have defined theme data
             activeMenuItem: '1', // Initial active menu item
             menuItems: [
@@ -67,7 +79,7 @@ export default {
     },
     methods: {
         setSheetHeight() {
-            const screen = document.querySelector('.screen');
+            const screen = document.querySelector('.screen'); // height of screen use screen if of 
             if (screen) {
                 const screenHeight = window.innerHeight - 64;
                 screen.style.height = screenHeight + 'px';
@@ -101,5 +113,10 @@ export default {
 
 .colo_red {
     color: #ff0000;
+}
+
+.demo-split {
+    /* height: 400px; */
+    border: 1px solid #dcdee2;
 }
 </style>

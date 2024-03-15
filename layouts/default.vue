@@ -4,7 +4,8 @@
       <v-card absolute color="#ff0000" elevate-on-scroll scroll-target="#scrolling-techniques-7" class="rounded-0"
         style="height: 75px; padding: 0%;">
         <v-row>
-          <v-col cols="5" class="color_with pa-0" style="height:75px; border-top-right-radius: 100%;">
+          <v-col cols="5" class="color_with pa-0" style="height:75px; clip-path: polygon(0 0, 70% 0, 100% 100% , 0 100%);">
+
             <v-card-text class="pa-0">
               <v-btn text style="height: 75px; width: 100%; border-top-right-radius: 100%; color:transparent; padding-right: 30%;" @click="$router.push('/')">
                 <v-img max-height="75px" max-width="75px"
@@ -12,7 +13,7 @@
               </v-btn>
             </v-card-text>
           </v-col>
-          <v-col cols="7" style="width: 55%; height:100%;">
+          <v-col cols="7" style="height:100%;">
             <v-card-text class="pa-0 pt-1">
               <Menu mode="horizontal" :theme="theme" active-name="1" @on-select="menuSelect" class="colo_red color"
                 style="display: flex; justify-content: right;">
